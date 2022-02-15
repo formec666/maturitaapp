@@ -47,3 +47,7 @@
   -fx-box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   -fx-color: rgba(0, 0, 0, 0.65);
 }
+.textNormal{
+  -fx-font-size:16px;
+  -fx-margin: 5px;
+}

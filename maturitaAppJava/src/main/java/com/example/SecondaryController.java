@@ -13,10 +13,16 @@ public class SecondaryController {
     Label NameLabelMain=new Label();
     @FXML
     Button ActionButton= new Button();
+    @FXML
+    Label schoolName=new Label();
 
     @FXML
     protected void initialize(){
         NameLabelMain.setText(App.name);
+        //System.out.println("SchoolName is "+App.user.schoolName);
+        //System.out.println("Classroom Password is "+App.user.classroomLogin);
+        //System.out.println("classroom name is "+App.user.classroomName);
+        schoolName.setText(App.school.name);
     }
 
     @FXML

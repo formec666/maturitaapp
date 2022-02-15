@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 
 /**
@@ -15,14 +16,25 @@ public class App extends Application {
 
     private static Scene scene;
     static String name;
+    public static School school=new School();
+    public static User user=new User(); // creates an instance of the user object that will be used by individual controllers
+
+/*
+all the code below the line is just some javaFX stuff, no need to bother
+---------------------------------------------------------------------------------------------------------------
+*/ 
+
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 600, 480);
+        scene = new Scene(loadFXML("primary"), 600, 600);
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
+        
+        
     }
+
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
