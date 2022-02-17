@@ -7,6 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+import com.example.*;
+
 public class PrimaryController {
 
     @FXML
@@ -25,8 +27,9 @@ public class PrimaryController {
         
         App.user.createUser(schoolName.getText(),classroomLogin.getText(),classroomName.getText());// takes the user input into the user object
         App.school=App.user.authenticate();//begins the users authentication
+        
         if (App.school.authenticated==true)
             {App.setRoot("secondary");} // and switches to second screen if the authentication happens correctly
-        else{failedWarning.setVisible(true);}
+        else{failedWarning.setVisible(true);}//or shows the warning if the password was wrong
     }
 }

@@ -18,6 +18,7 @@ public class App extends Application {
     static String name;
     public static School school=new School();
     public static User user=new User(); // creates an instance of the user object that will be used by individual controllers
+    public static Student[] students=new Student[2];
 
 /*
 all the code below the line is just some javaFX stuff, no need to bother
