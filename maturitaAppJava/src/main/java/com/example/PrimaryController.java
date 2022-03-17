@@ -2,12 +2,10 @@ package com.example;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-import com.example.*;
 
 public class PrimaryController {
 
@@ -23,6 +21,7 @@ public class PrimaryController {
     @FXML
     private void switchToSecondary() throws IOException {
         
+
         App.name="Tomáš Formánek";
         
         App.user.createUser(schoolName.getText(),classroomLogin.getText(),classroomName.getText());// takes the user input into the user object
