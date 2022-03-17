@@ -27,6 +27,7 @@ def authenticate():
     else: 
         school={"authenticated":False}
         print("false")
+        sleep(2000)
         return jsonify(school)
 
 

@@ -2,6 +2,7 @@ package com.example;
 
 
 public class School {
+    
     public Boolean authenticated;
     public String name;
     public String logoURL;

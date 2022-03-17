@@ -12,6 +12,9 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.VBox;
 import okhttp3.*;
 
 public class User {
@@ -27,7 +30,9 @@ public class User {
         this.classroomName=classroom;
         
     }
-    public School authenticate() throws JsonMappingException, JsonProcessingException{
+    public School authenticate(ProgressIndicator loginIndicator, VBox failedWarning, Label failedText) throws JsonMappingException, JsonProcessingException{
+        loginIndicator.setVisible(true);
+        
         OkHttpClient client= new OkHttpClient();
 
        
@@ -41,8 +46,6 @@ public class User {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        System.out.println(params);
         
         RequestBody body = RequestBody.create( params.toString(),
             MediaType.parse("application/json"));
@@ -59,20 +62,23 @@ public class User {
         try {
             response = client.newCall(request).execute();
         } catch (IOException d) {
+            failedWarning.setVisible(true);
+            failedText.setText("Chyba spojení, zkontrolujte připojení nebo kontaktujte zprávce");
+            loginIndicator.setVisible(false);
             
-                d.printStackTrace();
-            response=null;
+            School school=new School("null","null", false);
+            return school;
         }
 
         School school;
         try {
             school = new ObjectMapper().readValue(response.body().byteStream(), School.class);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            
             school=new School("null","null", false);
         }
         
+        loginIndicator.setVisible(false);
         //String json="{\"name\":\"Gymnázium Vyškov\", \"authenticated\":true, \"logoURL\":\"https://www.gykovy.cz/wp-content/uploads/2021/02/cropped-GYKOVY-LOGO_bila-budova-okoli-kruhu_web-2045x2048.png\"        }";
         //School school=new School("Gymnázium a SOŠZE Vyškov", "https://www.gykovy.cz/wp-content/uploads/2021/02/cropped-GYKOVY-LOGO_bila-budova-okoli-kruhu_web-2045x2048.png", true);
         //School school = new ObjectMapper().readValue(json, School.class);//creates a new school object from the response that gets returned
